@@ -1,0 +1,297 @@
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+	    <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta name="description" content="">
+	    <meta name="author" content="">
+	    <link rel="icon" href="/favicon.ico">
+			<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+	    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+			<!-- <link rel="stylesheet" type="text/css" href="./css/judith.css"> -->
+			
+			<!--  Material Dashboard CSS    -->
+			<link href="../css/material-dashboard.css?v=1.2.0" rel="stylesheet" />
+			
+			<!--     Fonts and icons     -->
+			<link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+			<link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+	
+			<link href="../css/bootstrap.css" rel="stylesheet" />
+				 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+
+	    <title>ALC</title>
+	</head>
+<body>
+			<!-- <nav class="navbar navbar-inverse" role="navigation">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#">Student Information</a>
+					</div>
+
+				</div>
+			</nav> -->
+	<div id="wrapper">
+		<div class="sidebar" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
+			
+			<div class="logo">
+					<a href="#" class="simple-text">
+							School Portal
+					</a>
+
+			</div>
+			<div class="sidebar-wrapper">
+					<ul class="nav">
+							<li class="active">
+									<a href="">
+											<i class="material-icons">dashboard</i>
+											<p>Dashboard</p>
+									</a>
+							</li>
+							<li>
+									<a href="" data-toggle="modal" data-target="#myModal">
+											<i class="material-icons">add_circle_outline</i>
+											<p>Add student</p>
+									</a>
+							</li>
+							
+						 
+					</ul>
+			</div>
+	</div>
+
+	<div class="main-panel">
+		<!-- <nav class="navbar navbar-transparent navbar-absolute">
+				<div class="container-fluid">
+						<div class="navbar-header">
+								<button type="button" class="navbar-toggle" data-toggle="collapse">
+										<span class="sr-only">Toggle navigation</span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+								</button>
+								
+						</div>
+						
+				</div>
+		</nav> -->
+		<div class="content">
+				<div class="container-fluid">
+						<div class="row">
+								<div class="col-md-12">
+										<div class="card">
+												<div class="card-header" data-background-color="purple">
+														<h4 class="title">Student Table</h4>
+														<p class="category">View records</p>
+												</div>
+												
+										</div>
+								</div>
+							 
+						</div>
+				</div>
+		</div>	 
+</div>
+	</div>
+
+
+<div class="container" id="app">
+	<div class="row">
+		<div class="col-md-2">
+ 
+		  <!-- Modal -->
+		  <div class="modal fade" id="myModal" role="dialog">
+		    <div class="modal-dialog">
+		    
+		      <!-- Modal content-->
+		      <div class="modal-content">
+		        <div class="modal-header">
+		          <button type="button" class="close" data-dismiss="modal">&times;</button>
+		          <h4 class="modal-title">Add New Student</h4>
+		        </div>
+		        <div class="modal-body">
+		          <form role="form">
+				<div class="form-group">
+					<label for="">First Name</label>
+					<input type="text" v-model="userData.first_name" class="form-control">
+				</div>
+
+				<div class="form-group">
+					<label for="">Last Name</label>
+					<input type="text" v-model="userData.last_name" class="form-control">
+				</div>
+
+				<div class="form-group">
+					<label for="">Phone Number</label>
+					<input type="number" v-model="userData.phone" class="form-control">
+				</div>
+
+				<div class="form-group">
+					<label for="">Age</label>
+					<input type="number" v-model="userData.age" class="form-control">
+				</div>
+			
+				<div class="form-group">
+					<label for="">School</label>
+					<input type="text" v-model="userData.school" class="form-control">
+				</div>
+
+				<div class="form-group">
+					<label for="">Course</label>
+					<input type="text" v-model="userData.course" class="form-control">
+				</div>
+			
+			</form>
+			<button type="button" class="btn btn-primary" @click="register">Submit</button>
+
+		        </div>
+		<!--         <div class="modal-footer">
+		          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        </div> -->
+		      </div>
+		      
+		    </div>
+		  </div>		
+		
+				</div>
+				<div class="col-md-10">
+					<table class="table">
+							<tr>
+								<th>First Name</th>
+								<th>Last Name</th>
+								<th>Phone</th>
+								<th>Age</th>
+								<th>School</th>
+								<th>Course</th>
+							</tr>
+
+							<tr class="active" v-for="student in students">
+								<td>{{student.first_name}}</td>
+								<td>{{student.last_name}}</td>
+								<td>{{student.phone}}</td>
+								<td>{{student.age}}</td>
+								<td>{{student.school}}</td>
+								<td>{{student.course}}</td>
+
+								<td><h4  data-toggle="modal" data-target="#editModal" @click="selectStudent(student._id)">
+									<a><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></h4>
+							  </td>
+								<td><h4 data-toggle="modal" data-target="#myFirstModal" @click="selectStudent(student._id)">
+									<a><i class="fa fa-trash-o" aria-hidden="true"></i></a></h4>
+								</td>
+							</tr>
+
+
+					</table>
+				</div>
+			</div>
+
+
+	 <!-- Modal -->
+	  <div class="modal fade" id="editModal" role="dialog">
+	    <div class="modal-dialog">
+	    
+	      <!-- Modal content-->
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 class="modal-title">Edit Student Record</h4>
+	        </div>
+	        <div class="modal-body">
+	    <form role="form">
+				<div class="form-group">
+					<label for="">First Name</label>
+					<input type="text" v-model="userData.first_name" class="form-control">
+				</div>
+
+				<div class="form-group">
+					<label for="">Last Name</label>
+					<input type="text" v-model="userData.last_name" class="form-control">
+				</div>
+
+				<div class="form-group">
+					<label for="">Phone Number</label>
+					<input type="number" v-model="userData.phone" class="form-control">
+				</div>
+			
+				<div class="form-group">
+					<label for="">Age</label>
+					<input type="number" v-model="userData.age" class="form-control">
+				</div>
+
+				<div class="form-group">
+						<label for="">School</label>
+						<input type="text" v-model="userData.school" class="form-control">
+					</div>
+
+					<div class="form-group">
+							<label for="">Course</label>
+							<input type="text" v-model="userData.course" class="form-control">
+						</div>
+			</form>
+			<button type="button" @click="register()" class="btn btn-primary">Submit</button>
+		</div>
+	<!--         <div class="modal-footer">
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        </div> -->
+	      </div>
+	      
+	    </div>
+	  </div>
+
+					
+				
+	  <div class="modal fade" id="myFirstModal" role="dialog">
+	    <div class="modal-dialog">
+	    
+	      <!-- Modal content-->
+	      <div class="modal-content modal-content">
+	        <div class="modal-header modal-header">
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	          <h4 class="modal-title">Are you sure you want to delete?</h4>
+	        </div>
+	        <div class="modal-body">
+	        	<div class="row">
+	        		<div class="col-md-6">
+	        			<button class="btn btn-success form-control" @click="deleteStudent">Yes</button> 
+	        		</div>
+	        		<div class="col-md-6">
+	        			<button class="btn btn-danger form-control" @click="">No</button> 
+	        		</div>
+	        		
+	        	</div>
+	        </div>
+	<!--         <div class="modal-footer">
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        </div> -->
+	      </div>
+	      
+	    </div>
+	  </div>
+		  
+					</div>
+
+
+
+			
+		</div>
+
+	 		<!-- jQuery library -->
+	        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	        <!-- Latest compiled JavaScript -->
+	        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	        <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+					<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	    		<script src="https://unpkg.com/vue"></script>
+					<script src="../js/new-vue.js"></script>
+					<!-- Material Dashboard javascript methods -->
+					<script src="../js/material-dashboard.js?v=1.2.0"></script>
+	</body>
+	</html>

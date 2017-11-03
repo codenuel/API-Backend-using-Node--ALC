@@ -1,0 +1,50 @@
+.navbar{
+	border-radius: 0 !important;
+	background-color: #061437;
+}
+.product{
+	border: none !important;
+	border-radius: 0 !important;
+}
+
+.img{
+	height: 145px !important;
+}
+
+.side-nav-left{
+	height: 400px;
+	left: 19px;
+	border-radius: 0 !important;
+	position: static !important;
+}
+.btn{
+	border-radius: 0 !important;
+}
+.admin-nav{
+	border-radius: 0 !important;
+	background-color: #F5CB5C !important;
+	height: 50px !important;
+	width: 100% !important;
+	margin: 0px;
+
+}
+.table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse !important;
+    width: 90%;
+}
+
+td, th {
+    border: 0px solid #dddddd;
+    text-align: left;
+    padding: 9px;
+}
+
+.modal-content{
+	margin-top: 160px;
+	width: 280px;
+}
+
+.modal-header{
+	border-bottom: 0px;
+}
